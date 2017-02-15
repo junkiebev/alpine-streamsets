@@ -46,15 +46,10 @@ RUN cd /tmp \
 	&& tar xzf "/tmp/streamsets-datacollector-core-${SERVICE_RELEASE}.tgz" -C /opt/ \
 	&& rm -rf "/tmp/streamsets-datacollector-core-${SERVICE_RELEASE}.tgz" \
 	&& mv "${SERVICE_HOME}-${SERVICE_RELEASE}" ${SERVICE_HOME} \
-	
+	&& addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} \
+	&& adduser -g "${SERVICE_NAME} user" -D -h ${SERVICE_HOME} -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} 
 
-RUN curl -sS -k ${SERVICE_URL}/${SERVICE_VERSION}/${SERVICE_RELEASE}.tgz | gunzip -c - | tar -xf - -C /opt \
-  && mv /opt/${SERVICE_RELEASE} ${SERVICE_HOME} \
-  && rm ${SERVICE_CONF} \
-  && mkdir ${SERVICE_HOME}/data ${SERVICE_HOME}/logs \
-  && addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} \
-  && adduser -g "${SERVICE_NAME} user" -D -h ${SERVICE_HOME} -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} 
-
+# Add all files
 ADD root /
 RUN chmod +x ${SERVICE_HOME}/bin/*.sh \
   && chown -R ${SERVICE_USER}:${SERVICE_GROUP} ${SERVICE_HOME} /opt/monit
