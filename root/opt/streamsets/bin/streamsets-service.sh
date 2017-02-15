@@ -9,7 +9,7 @@ function log {
 
 function serviceDefault {
     log "[ Applying default ${SERVICE_NAME} configuration... ]"
-    ${SERVICE_HOME}/bin/server.properties.sh
+    ${SERVICE_HOME}/bin/sdc.properties.sh
 }
 
 function serviceConf {
