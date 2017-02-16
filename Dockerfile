@@ -41,7 +41,6 @@ RUN apk --no-cache add bash curl
 
 # Install and configure streamsets
 RUN cd /tmp \
-	&& mkdir /opt \
 	&& curl -O -L "${SERVICE_URL}/${SERVICE_VERSION}/tarball/streamsets-datacollector-core-${SERVICE_RELEASE}.tgz" \
 	&& tar xzf "/tmp/streamsets-datacollector-core-${SERVICE_RELEASE}.tgz" -C /opt/ \
 	&& rm -rf "/tmp/streamsets-datacollector-core-${SERVICE_RELEASE}.tgz" \
