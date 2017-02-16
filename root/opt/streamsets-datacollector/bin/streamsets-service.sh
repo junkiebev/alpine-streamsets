@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SERVICE_LOG_DIR=${KAFKA_LOG_DIRS:-${SERVICE_HOME}"/logs"}
+SERVICE_LOG_DIR=${STREAMSETS_LOG_DIRS:-${SERVICE_HOME}"/logs"}
 SERVICE_LOG_FILE=${SERVICE_LOG_FILE:-${SERVICE_LOG_DIR}"/server.log"}
 
 function log {
